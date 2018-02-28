@@ -1,0 +1,13 @@
+{
+    "name": "socket-chat-example",
+    "version": "0.0.1",
+    "private": true,
+    "description": "my first socket.io app",
+    "dependencies": {
+        "ajv": "^6.2.0",
+        "eslint": "^4.18.1",
+        "express": "^4.16.2",
+        "jshint": "^2.9.5",
+        "socket.io": "^2.0.4"
+    }
+}
