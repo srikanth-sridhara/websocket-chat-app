@@ -2,16 +2,18 @@
 <html>
     <head>
         <title>Socket.IO chat</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <!-- Body start -->
-        <div>
+		<!-- Body start -->
+		<div id="nicknameval" style="display: none;"></div>
+        <div id="nicknameContainer">
             <h5>Enter a nickname</h5>
             <input id="nickname"/>
-        </div>
+		</div>
+		<div>Users: <div id="users"></div></div>
 
-        <ul id="messages"></ul>
+		<section id="messages"></section>
         <form action="">
             <input id="m" autocomplete="off" /><button>Send</button>
         </form>

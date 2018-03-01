@@ -9,15 +9,30 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
 
-io.on('connection', function(socket){
-    console.log('a user connected');
+var allClients = [];
 
+io.on('connection', function(socket){
+    allClients.push(socket);
+    
     socket.on('disconnect', function(){
-        console.log('user disconnected');
+        if (socket.name != undefined) {
+            console.log(socket.name + ' disconnected');
+            socket.broadcast.emit('general message', socket.name + ' Disconnected');
+        }
+        
+        var i = allClients.indexOf(socket);
+        allClients.splice(i, 1);
     });
 
     socket.on('chat message', function(msg){
-        io.emit('chat message', msg);
+        socket.broadcast.emit('chat message', msg);
+    });
+
+    socket.on('nickname', function(nickname){
+        socket.name = nickname;
+        console.log(nickname + ' connected');
+        io.emit('nickname', nickname);
+        io.emit('general message', socket.name + ' Connected');
     });
 
 });
